@@ -11,6 +11,8 @@ public interface LicenseMapper {
 
     int insertSelective(License record);
 
+    int countLicense(); //计算总数
+
     License selectByPrimaryKey(Integer licenseId);
 
     int updateByPrimaryKeySelective(License record);
@@ -18,6 +20,7 @@ public interface LicenseMapper {
     int updateByPrimaryKey(License record);
 
     List<License> selectAllLicense();
-    List<License> findLicenseByAccreditCode(String licenseAccreditCode);
+    List<License> findLicenseByAccreditCode(License license);
 
+    List<License> findLicenseByUniqueMark(License license);
 }

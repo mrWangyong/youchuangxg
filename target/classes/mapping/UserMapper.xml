@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycxg.server.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.ycxg.server.model.User" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+   user_id, user_name, password
+  </sql>
+
+  <!--登录-->
+  <select id="login" resultMap="BaseResultMap" parameterType="com.ycxg.server.model.User" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_name = #{userName,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+  </select>
+
+  <!--注册-->
+  <insert id="register" parameterType="com.ycxg.server.model.User" >
+    insert into user (user_name, password)
+    values (#{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
+  </insert>
+
+</mapper>

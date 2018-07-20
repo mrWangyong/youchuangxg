@@ -15,7 +15,7 @@ public class LicenseServiceImpl implements LicenseService {
     private LicenseMapper licenseMapper;
     @Override
     public int addLicense(License license) {
-        return licenseMapper.insert(license);
+        return licenseMapper.insertSelective(license);
     }
 
     @Override
@@ -26,12 +26,22 @@ public class LicenseServiceImpl implements LicenseService {
     }
 
     @Override
-    public List<License> findLicenseByAccreditCode(String licenseAccreditCode) {
-        return licenseMapper.findLicenseByAccreditCode(licenseAccreditCode);
+    public List<License> findLicenseByAccreditCode(License license) {
+        return licenseMapper.findLicenseByAccreditCode(license);
+    }
+
+    @Override
+    public List<License> findLicenseByUniqueMark(License license) {
+        return licenseMapper.findLicenseByUniqueMark(license);
     }
 
     @Override
     public int updataLicenseBylicenseId(License license) {
         return licenseMapper.updateByPrimaryKey(license);
+    }
+
+    @Override
+    public int countLicense() {
+        return licenseMapper.countLicense();
     }
 }

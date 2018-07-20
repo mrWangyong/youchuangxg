@@ -31,6 +31,45 @@ public class License {
 
     private String request;
 
+    private Integer licenseUserId;
+
+    private Date licenseCreateTime;
+
+    private Date licenseUpdateTime;
+
+    private Integer licenseState;
+
+    public Date getLicenseCreateTime() {
+        return licenseCreateTime;
+    }
+
+    public void setLicenseCreateTime(Date licenseCreateTime) {
+        this.licenseCreateTime = licenseCreateTime;
+    }
+
+    public Date getLicenseUpdateTime() {
+        return licenseUpdateTime;
+    }
+
+    public void setLicenseUpdateTime(Date licenseUpdateTime) {
+        this.licenseUpdateTime = licenseUpdateTime;
+    }
+
+    public Integer getLicenseState() {
+        return licenseState;
+    }
+
+    public void setLicenseState(Integer licenseState) {
+        this.licenseState = licenseState;
+    }
+
+    public Integer getLicenseUserId() {
+        return licenseUserId;
+    }
+
+    public void setLicenseUserId(Integer licenseUserId) {
+        this.licenseUserId = licenseUserId;
+    }
 
     public Integer getLicenseId() {
         return licenseId;

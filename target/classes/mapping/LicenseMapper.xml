@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycxg.server.mapper.LicenseMapper" >
+  <resultMap id="BaseResultMap" type="com.ycxg.server.model.License" >
+    <id column="license_id" property="licenseId" jdbcType="INTEGER" />
+    <result column="license_accredit_code" property="licenseAccreditCode" jdbcType="VARCHAR" />
+    <result column="license_unique_mark" property="licenseUniqueMark" jdbcType="VARCHAR" />
+    <result column="license_package_name" property="licensePackageName" jdbcType="VARCHAR" />
+    <result column="license_device_count" property="licenseDeviceCount" jdbcType="INTEGER" />
+    <result column="license_use_time_limit" property="licenseUseTimeLimit" jdbcType="TIMESTAMP" />
+    <result column="license_service_category" property="licenseServiceCategory" jdbcType="VARCHAR" />
+    <result column="license_app_name" property="licenseAppName" jdbcType="VARCHAR" />
+    <result column="license_apply_category" property="licenseApplyCategory" jdbcType="VARCHAR" />
+    <result column="license_licPath" property="licenseLicPath" jdbcType="VARCHAR" />
+    <result column="license_publicStorePath" property="licensePublicStorePath" jdbcType="VARCHAR" />
+    <result column="license_client_type" property="licenseClientType" jdbcType="VARCHAR" />
+    <result column="license_secretkey" property="licenseSecretkey" jdbcType="VARCHAR" />
+    <result column="license_userId" property="licenseUserId" jdbcType="INTEGER" />
+    <result column="license_createTime" property="licenseCreateTime" jdbcType="INTEGER" />
+    <result column="license_updateTime" property="licenseUpdateTime" jdbcType="INTEGER" />
+    <result column="license_state" property="licenseState" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    license_id, license_accredit_code, license_unique_mark, license_package_name, license_device_count, 
+    license_use_time_limit, license_service_category, license_app_name, license_apply_category,
+    license_client_type,license_secretkey,license_userId,license_createTime,license_updateTime,license_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from license
+    where license_id = #{licenseId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from license
+    where license_id = #{licenseId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ycxg.server.model.License" >
+    insert into license (license_id, license_accredit_code, license_unique_mark, 
+      license_package_name, license_device_count, 
+      license_use_time_limit, license_service_category, 
+      license_app_name, license_apply_category,license_licPath,license_publicStorePath,license_client_type,license_secretkey)
+    values (#{licenseId,jdbcType=INTEGER}, #{licenseAccreditCode,jdbcType=VARCHAR}, #{licenseUniqueMark,jdbcType=VARCHAR}, 
+      #{licensePackageName,jdbcType=VARCHAR}, #{licenseDeviceCount,jdbcType=INTEGER}, 
+      #{licenseUseTimeLimit,jdbcType=TIMESTAMP}, #{licenseServiceCategory,jdbcType=VARCHAR}, 
+      #{licenseAppName,jdbcType=VARCHAR}, #{licenseApplyCategory,jdbcType=VARCHAR},
+      #{licenseLicPath,jdbcType=VARCHAR},#{licensePublicStorePath,jdbcType=VARCHAR},
+      #{licenseClientType,jdbcType=VARCHAR},#{licenseSecretkey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycxg.server.model.License" >
+    insert into license
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="licenseId != null" >
+        license_id,
+      </if>
+      <if test="licenseAccreditCode != null" >
+        license_accredit_code,
+      </if>
+      <if test="licenseUniqueMark != null" >
+        license_unique_mark,
+      </if>
+      <if test="licensePackageName != null" >
+        license_package_name,
+      </if>
+      <if test="licenseDeviceCount != null" >
+        license_device_count,
+      </if>
+      <if test="licenseUseTimeLimit != null" >
+        license_use_time_limit,
+      </if>
+      <if test="licenseServiceCategory != null" >
+        license_service_category,
+      </if>
+      <if test="licenseAppName != null" >
+        license_app_name,
+      </if>
+      <if test="licenseApplyCategory != null" >
+        license_apply_category,
+      </if>
+      <if test="licenseLicPath != null" >
+        license_licPath,
+      </if>
+      <if test="licensePublicStorePath != null" >
+        license_publicStorePath,
+      </if>
+      <if test="licenseClientType != null" >
+        license_client_type,
+      </if>
+      <if test="licenseSecretkey != null" >
+        license_secretkey,
+      </if>
+        <if test="licenseUserId != null" >
+            license_userId,
+        </if>
+      <if test="licenseCreateTime != null" >
+        license_createTime,
+      </if>
+      <if test="licenseUpdateTime != null" >
+        license_updateTime,
+      </if>
+      <if test="licenseState != null" >
+        license_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="licenseId != null" >
+        #{licenseId,jdbcType=INTEGER},
+      </if>
+      <if test="licenseAccreditCode != null" >
+        #{licenseAccreditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseUniqueMark != null" >
+        #{licenseUniqueMark,jdbcType=VARCHAR},
+      </if>
+      <if test="licensePackageName != null" >
+        #{licensePackageName,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseDeviceCount != null" >
+        #{licenseDeviceCount,jdbcType=INTEGER},
+      </if>
+      <if test="licenseUseTimeLimit != null" >
+        #{licenseUseTimeLimit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="licenseServiceCategory != null" >
+        #{licenseServiceCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseAppName != null" >
+        #{licenseAppName,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseApplyCategory != null" >
+        #{licenseApplyCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseLicPath != null" >
+        #{licenseLicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="licensePublicStorePath != null" >
+        #{licensePublicStorePath,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseClientType != null" >
+        #{licenseClientType,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseSecretkey != null" >
+        #{licenseSecretkey,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseUserId != null" >
+          #{licenseUserId,jdbcType=INTEGER},
+      </if>
+      <if test="licenseCreateTime != null" >
+        #{license_createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="licenseUpdateTime != null" >
+        #{license_updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="licenseState != null" >
+        #{license_state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycxg.server.model.License" >
+    update license
+    <set >
+      <if test="licenseAccreditCode != null" >
+        license_accredit_code = #{licenseAccreditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseUniqueMark != null" >
+        license_unique_mark = #{licenseUniqueMark,jdbcType=VARCHAR},
+      </if>
+      <if test="licensePackageName != null" >
+        license_package_name = #{licensePackageName,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseDeviceCount != null" >
+        license_device_count = #{licenseDeviceCount,jdbcType=INTEGER},
+      </if>
+      <if test="licenseUseTimeLimit != null" >
+        license_use_time_limit = #{licenseUseTimeLimit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="licenseServiceCategory != null" >
+        license_service_category = #{licenseServiceCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseAppName != null" >
+        license_app_name = #{licenseAppName,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseApplyCategory != null" >
+        license_apply_category = #{licenseApplyCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseAppName != null" >
+        license_licPath = #{licenseLicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseApplyCategory != null" >
+        license_publicStorePath = #{licensePublicStorePath,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseApplyCategory != null" >
+        license_client_type = #{licenseClientType,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseApplyCategory != null" >
+        license_secretkey = #{licenseSecretkey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where license_id = #{licenseId,jdbcType=INTEGER}
+  </update>
+
+  <!--更新客户端的数据(根据唯一标识)-->
+  <update id="updateByPrimaryKey" parameterType="com.ycxg.server.model.License" >
+    update license
+    <set >
+      <if test="licenseAccreditCode != null" >
+        license_accredit_code = #{licenseAccreditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="licensePackageName != null" >
+        license_package_name = #{licensePackageName,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseDeviceCount != null" >
+        license_device_count = #{licenseDeviceCount,jdbcType=INTEGER},
+      </if>
+      <if test="licenseUseTimeLimit != null" >
+        license_use_time_limit = #{licenseUseTimeLimit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="licenseServiceCategory != null" >
+        license_service_category = #{licenseServiceCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseAppName != null" >
+        license_app_name = #{licenseAppName,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseApplyCategory != null" >
+        license_apply_category = #{licenseApplyCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseAppName != null" >
+        license_licPath = #{licenseLicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseApplyCategory != null" >
+        license_publicStorePath = #{licensePublicStorePath,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseClientType != null" >
+        license_client_type = #{licenseClientType,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseSecretkey != null" >
+        license_secretkey = #{licenseSecretkey,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseUserId != null" >
+        license_userId = #{licenseUserId,jdbcType=INTEGER},
+      </if>
+      <if test="licenseCreateTime != null" >
+        license_createTime = #{licenseCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="licenseUpdateTime != null" >
+        license_updateTime = #{licenseUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="licenseState != null" >
+        license_state = #{licenseState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where license_unique_mark = #{licenseUniqueMark,jdbcType=VARCHAR}
+  </update>
+
+
+  <select id="selectAllLicense" resultMap="BaseResultMap">
+    SELECT * from license
+  </select>
+  <select id="findLicenseByAccreditCode" resultMap="BaseResultMap" parameterType="com.ycxg.server.model.License">
+    SELECT * from license where
+    license_accredit_code = #{licenseAccreditCode,jdbcType=VARCHAR} and license_package_name = #{licensePackageName,jdbcType=VARCHAR}
+</select>
+
+  <select id="findLicenseByUniqueMark" resultMap="BaseResultMap" parameterType="com.ycxg.server.model.License">
+    SELECT * from license where
+    license_unique_mark = #{licenseUniqueMark,jdbcType=VARCHAR}
+  </select>
+
+    <select id="countLicense" resultType="int" parameterType="java.lang.Integer" >
+        select count(*) from license
+    </select>
+
+
+</mapper>
