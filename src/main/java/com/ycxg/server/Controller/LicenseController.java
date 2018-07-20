@@ -217,7 +217,7 @@ public class LicenseController {
         Map<String , Object> result = new HashMap<String , Object>();
         int count =  licenseService.countLicense();
         result.put("resultCode","200");
-        result.put("message","成功");
+        result.put("message","成功了");
         result.put("count",count);
         return  result ;
     }
