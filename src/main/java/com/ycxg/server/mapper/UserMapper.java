@@ -9,5 +9,11 @@ public interface UserMapper {
 
     int register(User user);
 
+    int editorUser(User user);
+
+    int countUser();
+
     List<User> login(User user);
+
+    List<User> getUserlist();
 }

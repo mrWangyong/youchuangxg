@@ -16,8 +16,8 @@
     <result column="license_client_type" property="licenseClientType" jdbcType="VARCHAR" />
     <result column="license_secretkey" property="licenseSecretkey" jdbcType="VARCHAR" />
     <result column="license_userId" property="licenseUserId" jdbcType="INTEGER" />
-    <result column="license_createTime" property="licenseCreateTime" jdbcType="INTEGER" />
-    <result column="license_updateTime" property="licenseUpdateTime" jdbcType="INTEGER" />
+    <result column="license_createTime" property="licenseCreateTime" jdbcType="TIMESTAMP" />
+    <result column="license_updateTime" property="licenseUpdateTime" jdbcType="TIMESTAMP" />
     <result column="license_state" property="licenseState" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -89,9 +89,9 @@
       <if test="licenseSecretkey != null" >
         license_secretkey,
       </if>
-        <if test="licenseUserId != null" >
+      <if test="licenseUserId != null" >
             license_userId,
-        </if>
+      </if>
       <if test="licenseCreateTime != null" >
         license_createTime,
       </if>
@@ -146,13 +146,13 @@
           #{licenseUserId,jdbcType=INTEGER},
       </if>
       <if test="licenseCreateTime != null" >
-        #{license_createTime,jdbcType=TIMESTAMP},
+          #{licenseCreateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="licenseUpdateTime != null" >
-        #{license_updateTime,jdbcType=TIMESTAMP},
+        #{licenseUpdateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="licenseState != null" >
-        #{license_state,jdbcType=INTEGER},
+        #{licenseUpdateTime,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>

@@ -5,6 +5,7 @@
     <id column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="passwordNew" property="passwordNew" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
    user_id, user_name, password
@@ -23,5 +24,26 @@
     insert into user (user_name, password)
     values (#{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
   </insert>
+
+  <!--用户列表-->
+  <select id="getUserlist" resultMap="BaseResultMap">
+    select user_id, user_name from user
+  </select>
+
+  <!--修改密码-->
+  <update id="editorUser"  parameterType="com.ycxg.server.model.User" >
+    update user
+    <set>
+      <if test="password != null" >
+          password = #{password,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+
+  <select id="countUser" resultType="int" parameterType="java.lang.Integer" >
+        select count(*) from user
+  </select>
+
 
 </mapper>

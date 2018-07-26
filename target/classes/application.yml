@@ -1,6 +1,6 @@
 server:
   port: 8888
-#  context-path: /youchuangxg
+  #context-path: /youchuangxg
 
 spring:
     datasource:
