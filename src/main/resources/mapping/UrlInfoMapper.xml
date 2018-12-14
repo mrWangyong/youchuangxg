@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycxg.server.mapper.UrlInfoMapper" >
+
+  <!--网址列表-->
+  <select id="getList" resultType="com.ycxg.server.model.UrlInfo">
+      SELECT * FROM urlinfo ORDER BY id DESC
+  </select>
+
+  <insert id="addUrl" parameterType="com.ycxg.server.model.UrlInfo" >
+    insert into urlinfo (remark, address, userInfo)
+    values (#{remark,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{userInfo,jdbcType=VARCHAR})
+  </insert>
+
+</mapper>

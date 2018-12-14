@@ -253,12 +253,23 @@
   </update>
 
 
-  <select id="selectAllLicense" resultMap="BaseResultMap">
+  <select id="findAllLicense" resultMap="BaseResultMap" parameterType="map">
     SELECT * from license
+    WHERE 1 = 1
+    <if test="packageName != null" >
+     and license_package_name = #{packageName,jdbcType=VARCHAR}
+    </if>
+    order by license_updateTime desc
   </select>
   <select id="findLicenseByAccreditCode" resultMap="BaseResultMap" parameterType="com.ycxg.server.model.License">
     SELECT * from license where
-    license_accredit_code = #{licenseAccreditCode,jdbcType=VARCHAR} and license_package_name = #{licensePackageName,jdbcType=VARCHAR}
+    license_accredit_code = #{licenseAccreditCode,jdbcType=VARCHAR}
+    and
+    license_package_name = #{licensePackageName,jdbcType=VARCHAR}
+    and
+    license_device_count > 0
+    and
+    license_use_time_limit > 0
 </select>
 
   <select id="findLicenseByUniqueMark" resultMap="BaseResultMap" parameterType="com.ycxg.server.model.License">
@@ -266,9 +277,26 @@
     license_unique_mark = #{licenseUniqueMark,jdbcType=VARCHAR}
   </select>
 
-    <select id="countLicense" resultType="int" parameterType="java.lang.Integer" >
+    <select id="countLicense" resultType="int" parameterType="map" >
         select count(*) from license
+        WHERE 1 = 1
+        <if test="packageName != null" >
+          and license_package_name = #{packageName,jdbcType=VARCHAR}
+        </if>
     </select>
 
+  <select id="findLicenseByPackageName" resultMap="BaseResultMap" parameterType="com.ycxg.server.model.License">
+    SELECT * from license where
+    license_package_name = #{licensePackageName,jdbcType=VARCHAR}
+    order by license_updateTime desc
+  </select>
+
+
+    <select id="findLicensePackageName" resultType="com.ycxg.server.Result.PackageInfo" parameterType="map" >
+        SELECT license_package_name as packageName,COUNT(*) as deviceUsed ,license_device_count as deviceCount
+        FROM `license`
+        WHERE license_device_count > 0
+        GROUP BY license_package_name order by license_updateTime desc
+    </select>
 
 </mapper>

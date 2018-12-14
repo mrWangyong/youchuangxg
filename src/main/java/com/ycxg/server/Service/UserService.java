@@ -14,4 +14,6 @@ public interface UserService {
     int editorUser(User user);
 
     int countUser();
+
+    int updataStatus(User user);
 }

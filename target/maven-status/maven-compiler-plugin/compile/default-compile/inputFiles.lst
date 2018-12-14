@@ -1,3 +1,4 @@
+D:\workspace\youchuangxg\src\main\java\com\ycxg\server\WebsocketH5\MyHandler.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\license\PrivacyGuard.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\license\DefaultLicenseParam.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\verify\LicenseManagerHolder.java
@@ -12,21 +13,25 @@ D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\license\Resourc
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\verify\RequestVerifyLicense.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\xml\GenericCertificate.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\license\LicenseParam.java
+D:\workspace\youchuangxg\src\main\java\com\ycxg\server\Websocket\WebSocketConfig.java
 D:\workspace\youchuangxg\src\main\java\com\ycxg\server\mapper\LicenseMapper.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\license\LicenseCreator.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\xml\PersistenceService.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\utils\ListNets.java
 D:\workspace\youchuangxg\src\main\java\com\ycxg\server\Service\impl\UserServiceImpl.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\license\LicenseNotaryException.java
+D:\workspace\youchuangxg\src\main\java\com\ycxg\server\WebsocketH5\WebSocketInterceptor.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\license\PrivacyGuard2.java
 D:\workspace\youchuangxg\src\main\java\com\ycxg\server\Service\impl\LicenseServiceImpl.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\util\ObfuscatedString.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\license\KeyStoreParam.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\license\Policy.java
+D:\workspace\youchuangxg\src\main\java\com\ycxg\server\Websocket\ResponseMessage.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\xml\GenericCertificateNotLockedException.java
 D:\workspace\youchuangxg\src\main\java\com\ycxg\server\model\License.java
 D:\workspace\youchuangxg\src\main\java\license\CreateLicense.java
 D:\workspace\youchuangxg\src\main\java\com\ycxg\server\Controller\UserController.java
+D:\workspace\youchuangxg\src\main\java\com\ycxg\server\WebsocketH5\WebSocketH5Config.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\xml\XMLConstants.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\license\LicenseNotary.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\license\LicenseContentBeanInfo.java
@@ -37,6 +42,7 @@ D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\license\NoLicen
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\license\LocalLicenseManager.java
 D:\workspace\youchuangxg\src\main\java\license\licenseCreateTest.java
 D:\workspace\youchuangxg\src\main\java\com\ycxg\server\Service\LicenseService.java
+D:\workspace\youchuangxg\src\main\java\com\ycxg\server\Websocket\WebMvcConfig.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\license\LicenseManager.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\license\IllegalPasswordException.java
 D:\workspace\youchuangxg\src\main\java\license\LicenseManagerHolder.java
@@ -49,5 +55,7 @@ D:\workspace\youchuangxg\src\main\java\com\ycxg\server\mapper\UserMapper.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\xml\PersistenceServiceException.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\utils\LicenseCheckModel.java
 D:\workspace\youchuangxg\src\main\java\com\ycxg\server\Service\UserService.java
+D:\workspace\youchuangxg\src\main\java\com\ycxg\server\Websocket\RequestMessage.java
 D:\workspace\youchuangxg\src\main\java\com\ycxg\server\YouChuangXGApp.java
 D:\workspace\youchuangxg\src\main\java\zlicense\de\schlichtherle\license\AbstractKeyStoreParam.java
+D:\workspace\youchuangxg\src\main\java\com\ycxg\server\Websocket\WsController.java

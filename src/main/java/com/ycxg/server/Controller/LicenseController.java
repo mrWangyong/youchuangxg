@@ -1,5 +1,6 @@
 package com.ycxg.server.Controller;
 
+import com.ycxg.server.Result.PackageInfo;
 import com.ycxg.server.Service.LicenseService;
 import com.ycxg.server.model.License;
 import license.CreateLicense;
@@ -30,7 +31,8 @@ public class LicenseController {
     private String urlDownload;
 
     @ResponseBody
-    @RequestMapping(value = "/add/{licenseAccreditCode}/{licenseUniqueMark}/{licensePackageName}",produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/add/{licenseAccreditCode}/{licenseUniqueMark}/{licensePackageName}",
+            produces = {"application/json;charset=UTF-8"})
     public Map<String , Object> addLicense(@PathVariable("licenseAccreditCode") String licenseAccreditCode,
                                            @PathVariable("licenseUniqueMark") String licenseUniqueMark,
                                            @PathVariable("licensePackageName") String licensePackageName,
@@ -73,17 +75,29 @@ public class LicenseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/all/{pageNum}/{pageSize}",produces = {"application/json;charset=UTF-8"})
-    public Map<String , Object> findAllUser(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize){
-
+    @CrossOrigin
+    @RequestMapping(value = "/all/{pageNum}/{pageSize}",produces = {"application/json;charset=UTF-8"}  , method = RequestMethod.POST)
+    public Map<String , Object> findAllUser(
+            @PathVariable("pageNum") int pageNum,
+            @PathVariable("pageSize") int pageSize,
+            @RequestBody  License license
+    ){
         Map<String , Object> result = new HashMap<String , Object>();
-        List<License> LicenseList = licenseService.findAllLicense(pageNum,pageSize);
-        int count = licenseService.countLicense();
+        Map<String , Object> map = new HashMap<String , Object>();
+        map.put("pageNum",pageNum);
+        map.put("pageSize",pageSize);
+        String packageName = license.getLicensePackageName();
+        if(!packageName.equals("0")){
+            map.put("packageName",packageName);
+        }
+        List<License> LicenseList = licenseService.findAllLicense(map);
+        int count = licenseService.countLicense(map);
         result.put("resultCode","200");
         result.put("message","请求成功");
         result.put("count",count);
         result.put("LicenseList",LicenseList);
         return  result  ;
+
 
        // return licenseService.findAllLicense(pageNum,pageSize);
     }
@@ -116,7 +130,7 @@ public class LicenseController {
 
             License license1 = LicenseList.get(0);
             int count = LicenseList.size();  //设备数量（实际数量）
-            int LicenseDeviceCount = license1.getLicenseDeviceCount(); //数据库中设定的数量
+            int LicenseDeviceCount = license1.getLicenseDeviceCount()+1; //数据库中设定的数量
 
             //验证唯一标识是否存在（设备是否存在）
             List<License> licenseUniqueMarkList = licenseService.findLicenseByUniqueMark(licenseRequest) ;
@@ -139,23 +153,18 @@ public class LicenseController {
 
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
     //    	String date = df.format(new Date().getTime());// new Date()为获取当前系统时间，也可使用当前时间戳
-
-            Long date = new Date().getTime();
-
+//            Long date = new Date().getTime();
+            Long date = System.currentTimeMillis();
             Long databaseData = license1.getLicenseUseTimeLimit().getTime();
-
-            if (date > databaseData) {   //当前时间大于设定的时间，时间超限
-
+            if (date >= databaseData) {   //当前时间大于设定的时间，时间超限
                 if (exist) {
                     licenseRequest.setLicenseState(0);
                     licenseService.updataLicenseBylicenseId(licenseRequest);
                 }
-
                 result.put("resultCode","200");
                 result.put("message","时间超限");
                 return  result  ;
             }
-
             System.out.println("当前时间="+date);
             System.out.println("数据库时间="+databaseData);
 
@@ -167,6 +176,8 @@ public class LicenseController {
             license1.setLicenseClientType(licenseRequest.getLicenseClientType());
 
             licenseRequest.setLicenseState(1);
+            licenseRequest.setLicenseDeviceCount(license1.getLicenseDeviceCount());
+            licenseRequest.setLicenseUseTimeLimit(license1.getLicenseUseTimeLimit());
             if(exist){   //存在就更新
                 licenseRequest.setLicenseUpdateTime(currTime);
                 licenseService.updataLicenseBylicenseId(licenseRequest);
@@ -200,10 +211,25 @@ public class LicenseController {
             @RequestBody  License license) throws FileNotFoundException, UnsupportedEncodingException {
         Map<String , Object> result = new HashMap<String , Object>();
 
-        int type =  licenseService.addLicense(license);
+        String packageName = license.getLicensePackageName();
+        if(packageName.equals("") || packageName.equals("null")){
+            result.put("resultCode","201");
+            result.put("message","缺少包名");
+            return  result ;
+        }
+        List<License> LicenseList = licenseService.findLicenseByPackageName(license) ;
 
+        if(LicenseList.size() > 0){
+            result.put("resultCode","202");
+            result.put("message","包名重复，请选择其他包名");
+            return  result ;
+        }
+
+        String licenseAccreditCode = UUID.randomUUID().toString();
+        license.setLicenseAccreditCode(licenseAccreditCode);
+        int type =  licenseService.addLicense(license);
         result.put("resultCode","200");
-        result.put("message","成功");
+        result.put("message","添加成功");
         result.put("type",type);
         return  result ;
     }
@@ -212,13 +238,34 @@ public class LicenseController {
      * 计算总条数
      * */
     @ResponseBody
-    @RequestMapping(value = "/countLicense",produces = {"application/json;charset=UTF-8"} , method = RequestMethod.GET)
-    public Map<String , Object>  countLicense() throws FileNotFoundException, UnsupportedEncodingException {
+    @RequestMapping(value = "/countLicense",produces = {"application/json;charset=UTF-8"} , method = RequestMethod.POST)
+    public Map<String , Object>  countLicense( @RequestBody  License license) {
         Map<String , Object> result = new HashMap<String , Object>();
-        int count =  licenseService.countLicense();
+        Map<String , Object> map = new HashMap<String , Object>();
+        String packageName = license.getLicensePackageName();
+        if(!packageName.equals("0")){
+            map.put("packageName",packageName);
+        }
+        int count =  licenseService.countLicense(map);
         result.put("resultCode","200");
         result.put("message","成功了");
         result.put("count",count);
+        return  result ;
+    }
+
+    /*
+     *获取包名
+     * */
+    @ResponseBody
+    @RequestMapping(value = "/findLicensePackageName",produces = {"application/json;charset=UTF-8"} ,
+            method = RequestMethod.GET)
+    public Map<String , Object>  findLicensePackageName() {
+        Map<String , Object> result = new HashMap<String , Object>();
+        Map<String , Object> map = new HashMap<String , Object>();
+        List<PackageInfo> PackageInfoList =  licenseService.findLicensePackageName(map);
+        result.put("resultCode","200");
+        result.put("message","成功了");
+        result.put("PackageInfoList",PackageInfoList);
         return  result ;
     }
 

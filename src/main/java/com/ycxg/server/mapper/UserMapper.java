@@ -13,6 +13,8 @@ public interface UserMapper {
 
     int countUser();
 
+    int updataStatus(User user);
+
     List<User> login(User user);
 
     List<User> getUserlist();

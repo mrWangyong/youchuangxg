@@ -39,4 +39,9 @@ public class UserServiceImpl implements UserService {
     public int editorUser(User user) {
         return userMapper.editorUser(user);
     }
+
+    @Override
+    public int updataStatus(User user) {
+        return userMapper.updataStatus(user);
+    }
 }

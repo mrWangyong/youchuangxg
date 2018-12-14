@@ -11,6 +11,16 @@ public class User {
 
     private String passwordNew;
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    private Integer status;
+
     public String getPasswordNew() {
         return passwordNew;
     }
@@ -19,7 +29,7 @@ public class User {
         this.passwordNew = passwordNew;
     }
 
-    public Integer getUserId() {
+    public  Integer getUserId() {
         return userId;
     }
 

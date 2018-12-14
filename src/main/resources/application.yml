@@ -1,6 +1,6 @@
 server:
   port: 8888
-  #context-path: /youchuangxg
+  context-path: /youchuangxg
 
 spring:
     datasource:
@@ -24,6 +24,17 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
+    redis:
+        database: 0
+        host: 192.168.1.33
+        port: 6379
+        password: myycxgjava
+        pool:
+          max-active: -1
+          max-wait: -1
+          max-idle: 8
+          min-idle: 0
+        timeout: 0
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.winter.model
@@ -36,5 +47,14 @@ pagehelper:
     params: count=countSql
 
 youchuangxg:
-          filePath: D:\nginx-1.8.1\html\youchuangxgcer
-          DownloadUrl: http://192.168.1.208/publicStorePath/
+    filePath: D:\nginx-1.8.1\html\youchuangxgcer
+    uploadfile: D:\nginx-1.8.1\html\youchuangxg
+    DownloadUrl: http://192.168.1.208/publicStorePath/
+
+sms:
+    accessId: LTAIv3GbnduOlkA5
+    accessKey: Uv5P5YUfZjtBAZ1Y6EhGdIpJfriedc
+    signName: 烟品上滩率
+    codeTemplate: SMS_149416604
+    product: Dysmsapi
+    domain: dysmsapi.aliyuncs.com

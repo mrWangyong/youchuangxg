@@ -1,8 +1,10 @@
 package com.ycxg.server.mapper;
 
+import com.ycxg.server.Result.PackageInfo;
 import com.ycxg.server.model.License;
 
 import java.util.List;
+import java.util.Map;
 
 public interface LicenseMapper {
     int deleteByPrimaryKey(Integer licenseId);
@@ -11,7 +13,7 @@ public interface LicenseMapper {
 
     int insertSelective(License record);
 
-    int countLicense(); //计算总数
+    int countLicense(Map map); //计算总数
 
     License selectByPrimaryKey(Integer licenseId);
 
@@ -19,8 +21,13 @@ public interface LicenseMapper {
 
     int updateByPrimaryKey(License record);
 
-    List<License> selectAllLicense();
+    List<License> findAllLicense(Map map);
+
     List<License> findLicenseByAccreditCode(License license);
 
     List<License> findLicenseByUniqueMark(License license);
+
+    List<License> findLicenseByPackageName(License license);
+
+    List<PackageInfo> findLicensePackageName(Map map);
 }
