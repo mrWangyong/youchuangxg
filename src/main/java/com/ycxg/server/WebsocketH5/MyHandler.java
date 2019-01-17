@@ -122,7 +122,6 @@ public class MyHandler implements WebSocketHandler{
                 allSendSuccess = false;
             }
         }
-
         return  allSendSuccess;
     }
 

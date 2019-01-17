@@ -9,4 +9,8 @@ public interface UrlInfoService {
     List<UrlInfo> getList();
 
     int addUrl(UrlInfo urlInfo);
+
+    int editUrl(UrlInfo urlInfo);
+
+    int deleteUrl(UrlInfo urlInfo);
 }

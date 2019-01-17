@@ -74,7 +74,7 @@ public class RedisRepository {
     public void setExpire(final String key, final String value, final long time) {
         redisTemplate.execute((RedisCallback<Long>) connection -> {
             RedisSerializer<String> serializer = getRedisSerializer();
-            byte[] keys = serializer.serialize("smoke:"+key);
+            byte[] keys = serializer.serialize("youchuangxg:"+key);
             byte[] values = serializer.serialize(value);
             connection.set(keys, values);
             connection.expire(keys, time);

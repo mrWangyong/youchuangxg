@@ -21,8 +21,6 @@ public class UrlInfoController {
      *  网址列表
      *
      * */
-
-    @CrossOrigin
     @ResponseBody
     @RequestMapping(value = "/getList",produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
     public Map<String , Object> getList(){
@@ -34,11 +32,46 @@ public class UrlInfoController {
         return  result  ;
     }
 
+
+    /*
+     *  添加网址
+     *
+     * */
     @ResponseBody
     @RequestMapping(value = "/addUrl",produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
     public Map<String , Object> addUrl(@RequestBody UrlInfo urlInfo){
         Map<String , Object> result = new HashMap<String , Object>();
         int res =  urlInfoService.addUrl(urlInfo);
+        result.put("resultCode","200");
+        result.put("message","请求成功");
+        result.put("res",res);
+        return  result  ;
+    }
+
+    /*
+     *  编辑网址
+     *
+     * */
+    @ResponseBody
+    @RequestMapping(value = "/editUrl",produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
+    public Map<String , Object> editUrl(@RequestBody UrlInfo urlInfo){
+        Map<String , Object> result = new HashMap<String , Object>();
+        int res =  urlInfoService.editUrl(urlInfo);
+        result.put("resultCode","200");
+        result.put("message","请求成功");
+        result.put("res",res);
+        return  result  ;
+    }
+
+    /*
+     *  编辑网址
+     *
+     * */
+    @ResponseBody
+    @RequestMapping(value = "/deleteUrl",produces = {"application/json;charset=UTF-8"}, method = RequestMethod.POST)
+    public Map<String , Object> deleteUrl(@RequestBody UrlInfo urlInfo){
+        Map<String , Object> result = new HashMap<String , Object>();
+        int res =  urlInfoService.deleteUrl(urlInfo);
         result.put("resultCode","200");
         result.put("message","请求成功");
         result.put("res",res);

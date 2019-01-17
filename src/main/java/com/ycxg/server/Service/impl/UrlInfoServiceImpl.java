@@ -24,4 +24,14 @@ public class UrlInfoServiceImpl implements UrlInfoService {
     public  int addUrl(UrlInfo urlInfo){
         return urlInfoMapper.addUrl(urlInfo);
     }
+
+    @Override
+    public  int editUrl(UrlInfo urlInfo){
+        return urlInfoMapper.editUrl(urlInfo);
+    }
+
+    @Override
+    public  int deleteUrl(UrlInfo urlInfo){
+        return urlInfoMapper.deleteUrl(urlInfo);
+    }
 }

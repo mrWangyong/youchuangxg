@@ -12,4 +12,27 @@
     values (#{remark,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{userInfo,jdbcType=VARCHAR})
   </insert>
 
+  <!--编辑功能-->
+  <update id="editUrl"  parameterType="com.ycxg.server.model.UrlInfo" >
+    update urlinfo
+    <set>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="userInfo != null" >
+        userInfo = #{userInfo,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 删除 -->
+  <delete id="deleteUrl" parameterType="com.ycxg.server.model.UrlInfo">
+        DELETE FROM urlinfo WHERE id = #{id,jdbcType=INTEGER}
+  </delete>
+
+
 </mapper>

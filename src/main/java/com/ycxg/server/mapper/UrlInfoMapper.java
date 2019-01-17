@@ -7,4 +7,6 @@ import java.util.List;
 public interface UrlInfoMapper {
     List<UrlInfo> getList();
     int addUrl(UrlInfo urlInfo);
+    int editUrl(UrlInfo urlInfo);
+    int deleteUrl(UrlInfo urlInfo);
 }

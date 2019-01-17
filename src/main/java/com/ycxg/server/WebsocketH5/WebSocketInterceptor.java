@@ -24,6 +24,7 @@ public class WebSocketInterceptor implements HandshakeInterceptor {
             System.out.println("当前session的ID=" + ID);
             ServletServerHttpRequest serverHttpRequest = (ServletServerHttpRequest) request;
             HttpSession session = serverHttpRequest.getServletRequest().getSession();
+            System.out.println(session);
             map.put("WEBSOCKET_USERID", ID);
         }
         return true;
